@@ -1,0 +1,133 @@
+unit Main;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.Menus;
+
+type
+  TForm1 = class(TForm)
+    Label1: TLabel;
+    Label2: TLabel;
+    Edit1: TEdit;
+    Label3: TLabel;
+    Edit2: TEdit;
+    Button1: TButton;
+    procedure Button1Click(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+  SESSION_ID: integer;
+  SESSION_HASH: string; // Уникальный код сессии
+
+// Тип для пользователя: login, password, name
+type
+  User = array[0..2] of string;
+
+implementation
+
+uses DB, News;
+
+{$R *.dfm}
+
+// Случайная строка
+function RandomStr: string;
+const N = 30;
+var i: integer;
+    s: string;
+begin
+  Randomize;
+  s := '';
+  for i := 1 to N do
+    s := s + chr (random( ord('Z') - ord('A') + 1) + ord('A'));
+  Result := s;
+end;
+
+// Авторизация
+procedure TForm1.Button1Click(Sender: TObject);
+var login: string;
+    password: string;
+    hash: string;
+    f: TextFile;
+begin
+  if (Trim(SESSION_HASH) = EmptyStr) AND (SESSION_ID <= 0) then
+    begin
+      login := Edit1.Text;
+      password := Edit2.Text;
+      hash := RandomStr();
+
+      try
+        // Получение пользователя из базы
+        DataModule1.TaQuery.Close;
+        DataModule1.TaQuery.SQL.text := 'SELECT * FROM `users` WHERE `login` = :login AND `password` = :pass';
+        DataModule1.TaQuery.Parameters.ParamByName('login').Value := login;
+        DataModule1.TaQuery.Parameters.ParamByName('pass').Value := password;
+        DataModule1.TaQuery.Open;
+
+        // Сохранение данных
+        SESSION_ID := DataModule1.TaQuery.FieldValues['id'];
+        SESSION_HASH := hash;
+
+        // Запись кода сессии в файл
+        AssignFile(f, 'session.txt');
+        Rewrite(f);
+        Writeln(f, hash);
+        CloseFile(f);
+
+        // Добавление сессии в базу
+        DataModule1.TaQuery.Close;
+        DataModule1.TaQuery.SQL.Clear;
+        DataModule1.TaQuery.SQL.Text := 'INSERT INTO `sessions` (`session_code`, `user_id`) VALUES (:hash, :id)';
+        DataModule1.TaQuery.Parameters.ParamByName('hash').Value := hash;
+        DataModule1.TaQuery.Parameters.ParamByName('id').Value := SESSION_ID;
+        DataModule1.TaQuery.ExecSQL;
+
+
+        Form3.ShowModal;
+      except
+        on e:Exception do
+          ShowMessage('Неверный логин или пароль');
+      end;
+    end;
+end;
+
+// Проверка пользователя на авторизацию
+procedure TForm1.FormShow(Sender: TObject);
+var tmp: string;
+    f: TextFile;
+begin
+  // Чтение кода сессии
+  AssignFile(f, 'session.txt');
+  Reset(f);
+  Readln(f, tmp);
+  CloseFile(f);
+
+  try
+    // Проверка из базы сессии
+    DataModule1.TaQuery.Close;
+    DataModule1.TaQuery.SQL.text := 'SELECT * FROM `sessions` WHERE `session_code` = :hash';
+    DataModule1.TaQuery.Parameters.ParamByName('hash').Value := Trim(tmp);
+    DataModule1.TaQuery.Open;
+
+    // Сохранение данных
+    SESSION_ID := DataModule1.TaQuery.FieldValues['user_id'];
+    SESSION_HASH := tmp;
+
+    Form3.ShowModal;
+    Form1.Close;
+  except
+    //on e:Exception do
+    //ShowMessage('Сессия не найдена');
+  end;
+end;
+
+end.
+
+

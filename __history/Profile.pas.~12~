@@ -1,0 +1,160 @@
+﻿unit Profile;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Mask, Vcl.DBCtrls,
+  Vcl.ExtCtrls, Vcl.ExtDlgs, Vcl.Imaging.jpeg, Vcl.Imaging.pngimage;
+
+type
+  TForm4 = class(TForm)
+    Label1: TLabel;
+    Label2: TLabel;
+    Label4: TLabel;
+    Save: TButton;
+    Edit1: TEdit;
+    Edit2: TEdit;
+    Label3: TLabel;
+    Edit3: TEdit;
+    Edit4: TEdit;
+    Label5: TLabel;
+    Edit5: TEdit;
+    UpdateImg: TButton;
+    Image1: TImage;
+    OpenDialog1: TOpenDialog;
+    ResetPassword: TButton;
+    procedure CancelClick(Sender: TObject);
+    procedure SaveClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure UpdateImgClick(Sender: TObject);
+    procedure ResetPasswordClick(Sender: TObject);
+
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form4: TForm4;
+
+implementation
+
+uses Main, DB;
+
+{$R *.dfm}
+
+// Получить данные пользователя по id
+function getUser(id: integer) : User;
+begin
+  DataModule1.TaQuery.Close;
+  DataModule1.TaQuery.SQL.text := 'SELECT * FROM `users` WHERE id = :id';
+  DataModule1.TaQuery.Parameters.ParamByName('id').Value := id;
+  DataModule1.TaQuery.Open;
+
+  Result[0] := DataModule1.TaQuery.FieldValues['login'];
+  Result[1] := DataModule1.TaQuery.FieldValues['password'];
+  Result[2] := DataModule1.TaQuery.FieldValues['title'];
+  Result[3] := DataModule1.TaQuery.FieldValues['file'];
+end;
+
+// Обновить автарку
+procedure TForm4.UpdateImgClick(Sender: TObject);
+var img: string;
+begin
+  if OpenDialog1.Execute then
+    begin
+       Edit5.Text := OpenDialog1.FileName;
+       img := ExtractFileName(OpenDialog1.FileName);
+
+       try
+          CopyFile(Pchar(OpenDialog1.FileName), Pchar(ExtractFilePath(Application.ExeName) + '\files\' + img), true);
+
+          DataModule1.TaQuery.Close;
+          DataModule1.TaQuery.SQL.Clear;
+          DataModule1.TaQuery.SQL.Text := 'UPDATE `users` SET `file` = :img WHERE `id` = :id';
+          DataModule1.TaQuery.Parameters.ParamByName('img').Value := img;
+          DataModule1.TaQuery.Parameters.ParamByName('id').Value := SESSION_ID;
+          DataModule1.TaQuery.ExecSQL;
+
+          Image1.Picture.LoadFromFile('files\' + img);
+        except
+          on e:Exception do
+            ShowMessage('Не удалось загрузить картинку');
+        end;
+    end;
+end;
+
+procedure TForm4.ResetPasswordClick(Sender: TObject);
+var pass: string;
+    lost: string;
+begin
+  pass := Edit2.Text;
+  lost := Edit3.Text;
+
+  if Length(pass) < 6 then
+    begin
+      ShowMessage('Длина пароля должна быть не меньше 6 символов');
+    end
+  else
+    begin
+      if Trim(pass) <> Trim(lost) then
+        ShowMessage('Пароли не совпадают')
+      else
+        begin
+          DataModule1.TaQuery.Close;
+          DataModule1.TaQuery.SQL.Clear;
+          DataModule1.TaQuery.SQL.Text := 'UPDATE `users` SET `password` = :pass WHERE `id` = :id';
+          DataModule1.TaQuery.Parameters.ParamByName('pass').Value := pass;
+          DataModule1.TaQuery.Parameters.ParamByName('id').Value := SESSION_ID;
+          DataModule1.TaQuery.ExecSQL;
+
+          ShowMessage('Пароль обновлен');
+
+          Edit2.Clear;
+          Edit3.Clear;
+        end;
+    end;
+end;
+
+procedure TForm4.CancelClick(Sender: TObject);
+begin
+  Form4.Close;
+end;
+
+// Сохранить логин и имя
+procedure TForm4.SaveClick(Sender: TObject);
+var login: string;
+    name: string;
+begin
+  login := Edit4.Text;
+  name := Edit1.Text;
+
+  try
+    DataModule1.TaQuery.Close;
+    DataModule1.TaQuery.SQL.Clear;
+    DataModule1.TaQuery.SQL.Text := 'UPDATE users SET login = :login, title = :name WHERE id = :id';
+    DataModule1.TaQuery.Parameters.ParamByName('login').Value := login;
+    DataModule1.TaQuery.Parameters.ParamByName('name').Value := name;
+    DataModule1.TaQuery.Parameters.ParamByName('id').Value := SESSION_ID;
+    DataModule1.TaQuery.ExecSQL;
+
+    ShowMessage('Данные сохранены');
+  except
+    on e:Exception do
+      ShowMessage('Не удалось обновить данные');
+  end;
+end;
+
+procedure TForm4.FormShow(Sender: TObject);
+var use: User;
+begin
+  use := getUser(SESSION_ID);
+  Image1.Stretch := True;
+  Image1.Picture.LoadFromFile('files\' + use[3]);
+  Edit4.Text := use[0];
+  Edit1.Text := use[2];
+end;
+
+end.

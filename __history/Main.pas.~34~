@@ -1,0 +1,65 @@
+unit Main;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.Menus;
+
+type
+  TForm1 = class(TForm)
+    procedure FormShow(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+  SESSION_ID: integer;
+  SESSION_HASH: string; // Уникальный код сессии
+
+// Тип для пользователя: login, password, name
+type
+  User = array[0..2] of string;
+
+implementation
+
+uses DB, News, Auth;
+
+{$R *.dfm}
+
+// Проверка пользователя на авторизацию
+procedure TForm1.FormShow(Sender: TObject);
+var tmp: string;
+    f: TextFile;
+begin
+  // Чтение кода сессии
+  AssignFile(f, 'session.txt');
+  Reset(f);
+  Readln(f, tmp);
+  CloseFile(f);
+
+  try
+    // Проверка из базы сессии
+    DataModule1.TaQuery.Close;
+    DataModule1.TaQuery.SQL.text := 'SELECT * FROM `sessions` WHERE `session_code` = :hash';
+    DataModule1.TaQuery.Parameters.ParamByName('hash').Value := Trim(tmp);
+    DataModule1.TaQuery.Open;
+
+    // Сохранение данных
+    SESSION_ID := DataModule1.TaQuery.FieldValues['user_id'];
+    SESSION_HASH := tmp;
+
+    Form3.ShowModal;
+    Form1.Close;
+  except
+    Form5.ShowModal;
+    Form1.Close;
+  end;
+end;
+
+end.
+
+

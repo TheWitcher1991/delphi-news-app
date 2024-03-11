@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>1899.12.30 00:00:00.000.395,=C:\Users\ashot\OneDrive\Рабочий стол\КУРСАЧ ООП\Unit2.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.226,C:\Users\ashot\OneDrive\Рабочий стол\КУРСАЧ ООП\Unit2.pas=C:\Users\ashot\OneDrive\Рабочий стол\КУРСАЧ ООП\AddNews.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.503,=C:\Users\ashot\OneDrive\Рабочий стол\КУРСАЧ ООП\Unit6.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.168,C:\Users\ashot\OneDrive\Рабочий стол\КУРСАЧ ООП\Unit6.pas=C:\Users\ashot\OneDrive\Рабочий стол\КУРСАЧ ООП\Only.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.452,C:\Users\ashot\OneDrive\Документы\Embarcadero\Studio\Projects\DB.pas=C:\Users\ashot\OneDrive\Рабочий стол\DB.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.121,C:\Users\ashot\OneDrive\Рабочий стол\КУРСАЧ ООП\Project1.dproj=C:\Users\ashot\OneDrive\Рабочий стол\КУРСАЧ ООП\NewsFeed.dproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.226,C:\Users\ashot\OneDrive\Рабочий стол\КУРСАЧ ООП\Unit2.dfm=C:\Users\ashot\OneDrive\Рабочий стол\КУРСАЧ ООП\AddNews.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.840,=C:\Users\ashot\OneDrive\Рабочий стол\КУРСАЧ ООП\Unit2.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.987,C:\Users\ashot\OneDrive\Рабочий стол\КУРСАЧ ООП\News.dfm=C:\Users\ashot\OneDrive\Рабочий стол\КУРСАЧ ООП\Auth.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.987,C:\Users\ashot\OneDrive\Рабочий стол\КУРСАЧ ООП\News.pas=C:\Users\ashot\OneDrive\Рабочий стол\КУРСАЧ ООП\Auth.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.168,C:\Users\ashot\OneDrive\Рабочий стол\КУРСАЧ ООП\Unit6.dfm=C:\Users\ashot\OneDrive\Рабочий стол\КУРСАЧ ООП\Only.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.013,C:\Users\ashot\OneDrive\Документы\Embarcadero\Studio\Projects\Main.pas=C:\Users\ashot\OneDrive\Рабочий стол\КУРСАЧ ООП\Main.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.584,C:\Users\ashot\OneDrive\Рабочий стол\КУРСАЧ ООП\Unit4.dfm=C:\Users\ashot\OneDrive\Рабочий стол\КУРСАЧ ООП\Profile.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.659,C:\Users\ashot\OneDrive\Рабочий стол\КУРСАЧ ООП\Auth.pas=C:\Users\ashot\OneDrive\Рабочий стол\КУРСАЧ ООП\Unit3.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.884,C:\Users\ashot\OneDrive\Документы\Embarcadero\Studio\Projects\Project1.dproj=C:\Users\ashot\OneDrive\Рабочий стол\КУРСАЧ ООП\Project1.dproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.824,C:\Users\ashot\OneDrive\Рабочий стол\DB.dfm=C:\Users\ashot\OneDrive\Рабочий стол\КУРСАЧ ООП\DB.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.950,=C:\Users\ashot\OneDrive\Рабочий стол\КУРСАЧ ООП\Unit4.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.397,=C:\Users\ashot\OneDrive\Документы\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.104,C:\Users\ashot\OneDrive\Документы\Embarcadero\Studio\Projects\Unit1.pas=C:\Users\ashot\OneDrive\Документы\Embarcadero\Studio\Projects\Main.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.354,C:\Users\ashot\OneDrive\Документы\Embarcadero\Studio\Projects\Unit1.pas=C:\Users\ashot\OneDrive\Документы\Embarcadero\Studio\Projects\DB.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.452,C:\Users\ashot\OneDrive\Документы\Embarcadero\Studio\Projects\DB.dfm=C:\Users\ashot\OneDrive\Рабочий стол\DB.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.104,C:\Users\ashot\OneDrive\Документы\Embarcadero\Studio\Projects\Unit1.dfm=C:\Users\ashot\OneDrive\Документы\Embarcadero\Studio\Projects\Main.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.354,C:\Users\ashot\OneDrive\Документы\Embarcadero\Studio\Projects\Unit1.dfm=C:\Users\ashot\OneDrive\Документы\Embarcadero\Studio\Projects\DB.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.584,C:\Users\ashot\OneDrive\Рабочий стол\КУРСАЧ ООП\Unit4.pas=C:\Users\ashot\OneDrive\Рабочий стол\КУРСАЧ ООП\Profile.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.823,=C:\Users\ashot\OneDrive\Рабочий стол\КУРСАЧ ООП\Unit5.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.237,=C:\Users\ashot\OneDrive\Рабочий стол\КУРСАЧ ООП\Unit3.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.659,C:\Users\ashot\OneDrive\Рабочий стол\КУРСАЧ ООП\Auth.dfm=C:\Users\ashot\OneDrive\Рабочий стол\КУРСАЧ ООП\Unit3.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.927,C:\Users\ashot\OneDrive\Рабочий стол\КУРСАЧ ООП\Unit5.dfm=C:\Users\ashot\OneDrive\Рабочий стол\КУРСАЧ ООП\Auth.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.885,=C:\Users\ashot\OneDrive\Документы\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.013,C:\Users\ashot\OneDrive\Документы\Embarcadero\Studio\Projects\Main.dfm=C:\Users\ashot\OneDrive\Рабочий стол\КУРСАЧ ООП\Main.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.824,C:\Users\ashot\OneDrive\Рабочий стол\DB.pas=C:\Users\ashot\OneDrive\Рабочий стол\КУРСАЧ ООП\DB.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.927,C:\Users\ashot\OneDrive\Рабочий стол\КУРСАЧ ООП\Unit5.pas=C:\Users\ashot\OneDrive\Рабочий стол\КУРСАЧ ООП\Auth.pas</Transaction>
+  </Transactions>
+	<ProjectSortOrder AutoSort="0" SortType="0">
+    <File Path="AddNews.pas"/>
+    <File Path="AddNews.dfm"/>
+    <File Path="Auth.pas"/>
+    <File Path="Auth.dfm"/>
+    <File Path="DB.pas"/>
+    <File Path="DB.dfm"/>
+    <File Path="Main.pas"/>
+    <File Path="Main.dfm"/>
+    <File Path="News.pas"/>
+    <File Path="News.dfm"/>
+    <File Path="Profile.pas"/>
+    <File Path="Profile.dfm"/>
+    <File Path="Only.pas"/>
+    <File Path="Only.dfm"/>
+  </ProjectSortOrder>
+</BorlandProject>

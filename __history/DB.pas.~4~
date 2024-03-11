@@ -1,0 +1,39 @@
+unit DB;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, Data.DB, Data.Win.ADODB;
+
+type
+  TDataModule1 = class(TDataModule)
+    ADOConnection1: TADOConnection;
+    TaCat: TADOTable;
+    dsCat: TDataSource;
+    TaNews: TADOTable;
+    dsNews: TDataSource;
+    TaNewsId: TAutoIncField;
+    TaNewsCategoryId: TIntegerField;
+    TaNewsЗаголовок: TWideStringField;
+    TaNewsТекст: TWideMemoField;
+    TaNewsАвтор: TWideStringField;
+    TaNewsФото: TBlobField;
+    TaNewsДата: TDateTimeField;
+    dsQuery: TDataSource;
+    TaQuery: TADOQuery;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  DataModule1: TDataModule1;
+
+implementation
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+{$R *.dfm}
+
+end.
